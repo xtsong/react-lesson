@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<!--react.js - React 的核心库-->
+		<script src="../js/react.js"></script>
+		<!--react-dom.min.js - 提供与 DOM 相关的功能-->
+	    <script src="../js/react-dom.js"></script>
+	    <!--用于将 JSX 语法转为 JavaScript 语法-->
+	    <script src="../js/babel.min.js"></script>
+	</head>
+	<body>
+		<div id="example"></div>
+		<script type="text/babel">
+			var Button = React.createClass({
+				getInitialState: function() {
+				    return {
+				      data:0
+				    };
+				},
+				setNewNumber: function() {
+				    this.setState({data: this.state.data + 1})
+				},
+				render: function () {
+				    return (
+				        <div>
+				            <button onClick = {this.setNewNumber}>click</button>
+				            <Content myNumber = {this.state.data}></Content>
+				        </div>
+				    );
+				}
+			});
+			var Content = React.createClass({
+				componentWillMount:function() {
+				      console.log('Component WILL MOUNT!')
+				},
+				componentDidMount:function() {
+				       console.log('Component DID MOUNT!')
+				},
+				componentWillReceiveProps:function(newProps) {
+				        console.log('Component WILL RECEIVE PROPS!')
+				},
+				shouldComponentUpdate:function(newProps, newState) {
+					console.log('我到底执行了么？');
+			        return true;
+				},
+				componentWillUpdate:function(nextProps, nextState) {
+				        console.log('Component WILL UPDATE!');
+				},
+				componentDidUpdate:function(prevProps, prevState) {
+				        console.log('Component DID UPDATE!')
+				},
+				componentWillUnmount:function() {
+				         console.log('Component WILL UNMOUNT!')
+				},
+			
+			    render: function () {
+			    	console.log(1);
+			      return (
+			        <div>
+			          <h3>{this.props.myNumber}</h3>
+			        </div>
+			      );
+			    }
+			});
+			ReactDOM.render(
+			   <div><Button /></div>,
+			  document.getElementById('example')
+			);
+		</script>
+	</body>
+</html>

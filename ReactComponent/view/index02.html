@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<!--react.js - React 的核心库-->
+		<script src="../js/react.js"></script>
+		<!--react-dom.min.js - 提供与 DOM 相关的功能-->
+	    <script src="../js/react-dom.js"></script>
+	    <!--用于将 JSX 语法转为 JavaScript 语法-->
+	    <script src="../js/babel.min.js"></script>
+	</head>
+	<body>
+		<div id="example"></div>
+		<script type="text/babel">
+			var HelloMessage = React.createClass({
+			  render: function() {
+			    return <h1>Hello {this.props.name}!</h1>;
+			  }
+			});
+			
+			ReactDOM.render(
+			  <HelloMessage name = "song" />,
+			  document.getElementById('example')
+			);
+		</script>
+	</body>
+</html>

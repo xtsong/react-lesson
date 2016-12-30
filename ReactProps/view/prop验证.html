@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>react.prop validator</title>
+		<!--react.js - React 的核心库-->
+		<script src="../js/react.js"></script>
+		<!--react-dom.min.js - 提供与 DOM 相关的功能-->
+	    <script src="../js/react-dom.js"></script>
+	    <!--用于将 JSX 语法转为 JavaScript 语法-->
+	    <script src="../js/babel.min.js"></script>
+	    
+	    <div id="example"></div>
+	    <script type="text/babel">
+	    	var title ="123";
+	    	var MyTitle = React.createClass({
+	    		propTypes:{		//校验属性是否有效
+	    			title: React.PropTypes.string.isRequired,
+	    		},
+	    		render:function(){
+	    			return <h1>Hello {this.props.title}</h1>;
+	    		}
+	    	});
+	    	ReactDOM.render(
+	    		<MyTitle title={title} />,
+	    		document.getElementById('example')
+	    	)
+	    </script>
+	</head>
+	<body>
+	</body>
+</html>

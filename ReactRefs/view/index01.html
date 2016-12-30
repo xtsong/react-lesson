@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		
+		<meta http-equiv="Access-Control-Allow-Origin" content="https://api.douban.com/*">
+		<title>React ajax</title>
+		<!--react.js - React 的核心库-->
+		<script src="../js/react.js"></script>
+		<!--react-dom.min.js - 提供与 DOM 相关的功能-->
+	    <script src="../js/react-dom.js"></script>
+	    <!--用于将 JSX 语法转为 JavaScript 语法-->
+	    <script src="../js/babel.min.js"></script>
+	    <script type="text/javascript" src="../js/jquery-1.10.2.min.js"></script>
+	    
+	</head>
+	<body>
+		<div id="example"></div>
+		<script type="text/babel">
+			var MyComponent = React.createClass({
+		      handleClick: function() {
+		        this.refs.myInput.focus();
+		      },
+		      render: function() {
+		        return (
+		          <div>
+		            <input type="text" ref="myInput" />
+		            <input type="button" value="点我输入框获取焦点" onClick={this.handleClick} />
+		          </div>
+		        );
+		      }
+		    });
+		
+		    ReactDOM.render(
+		      <MyComponent />,
+		      document.getElementById('example')
+		    );
+		</script>
+	</body>
+</html>

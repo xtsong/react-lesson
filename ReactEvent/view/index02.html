@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		
+		<meta http-equiv="Access-Control-Allow-Origin" content="https://api.douban.com/*">
+		<title>React Event</title>
+		<!--react.js - React 的核心库-->
+		<script src="../js/react.js"></script>
+		<!--react-dom.min.js - 提供与 DOM 相关的功能-->
+	    <script src="../js/react-dom.js"></script>
+	    <!--用于将 JSX 语法转为 JavaScript 语法-->
+	    <script src="../js/babel.min.js"></script>
+	    
+	</head>
+	<body>
+		<div id="example"></div>
+		<script type="text/babel">
+			var EventComponent = React.createClass({
+				render:function(){
+					return (
+						<div>
+		                	<input type="text" value={this.props.myDataProp} onChange={this.props.updateStateProp} /> 
+		                	<h4>{this.props.myDataProp}</h4>
+		                </div>						
+					);
+				}
+			});
+			
+			var HelloMessage = React.createClass({
+			  getInitialState: function() {
+			    return {value: 'Hello ReactEvent!'};
+			  },
+			  handleChange: function(event) {
+			    this.setState({value: event.target.value});
+			  },
+			  render: function() {
+			    var value = this.state.value;
+			    return (
+			    	<div>
+			    		<EventComponent myDataProp = {value} updateStateProp = {this.handleChange}></EventComponent>
+			    	</div>
+			    );
+			  }
+			});
+			ReactDOM.render(
+			  <HelloMessage />,
+			  document.getElementById('example')
+			);
+		</script>
+	</body>
+</html>

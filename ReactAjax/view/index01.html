@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		
+		<meta http-equiv="Access-Control-Allow-Origin" content="https://api.douban.com/*">
+		<title>React ajax</title>
+		<!--react.js - React 的核心库-->
+		<script src="../js/react.js"></script>
+		<!--react-dom.min.js - 提供与 DOM 相关的功能-->
+	    <script src="../js/react-dom.js"></script>
+	    <!--用于将 JSX 语法转为 JavaScript 语法-->
+	    <script src="../js/babel.min.js"></script>
+	    <script type="text/javascript" src="../js/jquery-1.10.2.min.js"></script>
+	    
+	</head>
+	<body>
+		<div id="example"></div>
+		<script type="text/babel">
+			var MyComponent  = React.createClass({
+		        getInitialState: function() {
+		          return {
+		            title: '',
+		            count: '',
+		            total: ''
+		          };
+		        },
+		
+		        componentDidMount: function() {
+		        	var that = this;
+					$.ajax({
+					    async:false,
+					    url:this.props.source,
+					    dataType : 'jsonp',
+					    jsonp : 'callback',
+					    success : function(result) {
+				            that.setState({
+				              title: result.title,
+				              count: result.count,
+				              total: result.total
+				            });
+					    }
+					});
+				},
+				
+		        componentWillUnmount: function() {
+		          this.serverRequest.abort();
+		        },
+		        
+		        render: function() {
+			        return (
+			            <div>
+			              <h1>{this.state.title}</h1>
+			              <h2>{this.state.count}</h2>
+			              <h3>{this.state.total}</h3>
+			            </div>
+			        );
+		        }
+	      });
+	      
+	      ReactDOM.render(
+	        <MyComponent source="https://api.douban.com/v2/movie/coming_soon" />,
+	        document.getElementById('example')
+	      );
+		</script>
+	</body>
+</html>
